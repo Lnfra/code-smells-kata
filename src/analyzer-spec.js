@@ -40,7 +40,7 @@ describe('boolean trap', function() {
     var sourceCode = funcCalledWithTrue.toString();
     expect(hasFunctionCallWithBoolean(sourceCode)).toBe(true);
   });
-  xit('should warn about functions called with true as second param', function() {
+  it('should warn about functions called with true as second param', function() {
     function funcCalledWithTrue() {
       someFunc(1, true);
     }
