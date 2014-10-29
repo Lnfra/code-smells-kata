@@ -61,18 +61,31 @@ describe('code duplication', function() {
 
   describe('duplicate code', function() {
 
-    xit('should find same code paths', function() {
+    xit('should exactly the same code', function() {
       var sourceCode = someFunc.toString();
       expect(isDuplicatedCode(sourceCode, sourceCode))
         .toBe(true);
     });
-    xit('should find same structured code paths', function() {
-      function sameStructuredFunc() {
-        if (x==y) return a;
-        someFunc(true);
-      }
-      expect(isDuplicatedCode(someFunc.toString(), sameStructuredFunc.toString()))
-        .toBe(true);
+
+    describe('should find same structured code paths', function() {
+      xit('just different variable names', function() {
+        function sameStructuredFunc() {
+          if (x==y) {
+            return a;
+          }
+          someFunc(true);
+        }
+        expect(isDuplicatedCode(someFunc.toString(), sameStructuredFunc.toString()))
+          .toBe(true);
+      });
+      xit('without blocks around a single statement', function() {
+        function sameStructuredFunc() {
+          if (x==y) return a;
+          someFunc(true);
+        }
+        expect(isDuplicatedCode(someFunc.toString(), sameStructuredFunc.toString()))
+          .toBe(true);
+      });
     });
 
   });
